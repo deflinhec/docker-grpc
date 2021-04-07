@@ -1,6 +1,5 @@
 FROM alpine:latest
 LABEL maintainer "deflinhec <deflinhec@gmail.com>"
-ARG GRPC_VERSION=v1.35.0
 
 # Install dependencies
 RUN apk add --no-cache libstdc++ && \
@@ -8,11 +7,8 @@ RUN apk add --no-cache libstdc++ && \
   git build-base autoconf automake libtool \
   curl cmake make unzip linux-headers
 
-# Clone repository
-WORKDIR /tmp
-RUN git clone -b $GRPC_VERSION \
-  --recurse-submodules \
-  https://github.com/grpc/grpc
+# Copy repository
+COPY grpc /tmp/grpc
 
 # Build gRPC
 WORKDIR /tmp/grpc
