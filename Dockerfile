@@ -18,7 +18,7 @@ RUN mkdir -p cmake/build && cd cmake/build && \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DCMAKE_INSTALL_PREFIX=/usr \
     ../.. && \
-  make -j && make install
+  make && make install
 
 # Remove dependencies
 RUN rm -rf /tmp/grpc && \
