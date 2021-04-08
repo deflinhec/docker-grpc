@@ -5,7 +5,7 @@ LABEL maintainer "deflinhec <deflinhec@gmail.com>"
 RUN apk add --no-cache libstdc++ && \
   apk add --no-cache --virtual .build-deps \
   git build-base libtool curl cmake make \
-  unzip linux-headers bash
+  unzip linux-headers
 
 # Copy repository
 COPY grpc /tmp/grpc
