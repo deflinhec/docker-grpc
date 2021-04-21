@@ -7,21 +7,19 @@ RUN apk add --no-cache libstdc++ && \
   git build-base libtool curl cmake make \
   unzip linux-headers
 
-# Copy repository
-COPY grpc /tmp/grpc
-
 # Build gRPC
 WORKDIR /tmp/grpc
+COPY grpc /tmp/grpc
 RUN mkdir -p cmake/build && cd cmake/build && \
   cmake -DgRPC_INSTALL=ON \
     -DgRPC_BUILD_TESTS=OFF \
-    -DCMAKE_VERBOSE_MAKEFILE=ON \
+    -DBUILD_SHARED_LIBS=ON \
     -DCMAKE_INSTALL_PREFIX=/usr/local \
     ../.. && \
-  make && make install
+  cmake --build . --target install
 
 # Remove dependencies
+WORKDIR /
 RUN rm -rf /tmp/grpc && \
   apk del .build-deps
 
-WORKDIR /

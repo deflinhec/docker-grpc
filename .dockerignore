@@ -1,0 +1,16 @@
+.git/*
+**/.git/*
+.vscode/*
+*.ps1
+
+# Executable generated files
+build/*
+include/*
+lib/*
+bin/*
+
+# Windows generated files
+out/*
+.vs/*
+**/out/*
+**/.vs/*
