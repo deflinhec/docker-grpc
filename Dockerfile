@@ -13,7 +13,6 @@ COPY grpc /tmp/grpc
 RUN mkdir -p cmake/build && cd cmake/build && \
   cmake -DgRPC_INSTALL=ON \
     -DgRPC_BUILD_TESTS=OFF \
-    -DBUILD_SHARED_LIBS=ON \
     -DCMAKE_INSTALL_PREFIX=/usr/local \
     ../.. && \
   cmake --build . --target install
@@ -22,8 +21,4 @@ RUN mkdir -p cmake/build && cd cmake/build && \
 WORKDIR /
 RUN rm -rf /tmp/grpc && \
   apk del .build-deps
-
-# Setup dependencies
-ENV LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
-ENV LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 
